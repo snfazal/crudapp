@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt');
-//requires 
+//requires
 var User = require('../models/user.js');
 
 function createSecure(req, res, next) {
@@ -14,7 +14,7 @@ function loginUser(req, res, next) {
   var email = req.body.email;
   var password = req.body.password;
 
-  var query User.findOne({ email: email }).exec()
+  var query = User.findOne({ email: email }).exec()
 
   query.then(function(foundUser){
     if (foundUser == null) {
