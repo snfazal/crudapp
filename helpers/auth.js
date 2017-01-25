@@ -1,4 +1,5 @@
 var bcrypt = require('bcrypt');
+//requires 
 var User = require('../models/user.js');
 
 function createSecure(req, res, next) {
@@ -9,7 +10,7 @@ function createSecure(req, res, next) {
 }
 
 function loginUser(req, res, next) {
-  // YOU MIGHT CHANGE EMAIL TO USERNAME IF YOU DON'T WANT TO STORE EMAILS
+  // stores email and password
   var email = req.body.email;
   var password = req.body.password;
 
