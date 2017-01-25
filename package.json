@@ -1,7 +1,6 @@
 {
   "name": "crudapp",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {},
   "devDependencies": {},
@@ -18,5 +17,6 @@
   "bugs": {
     "url": "https://github.com/snfazal/crudapp/issues"
   },
-  "homepage": "https://github.com/snfazal/crudapp#readme"
+  "homepage": "https://github.com/snfazal/crudapp#readme",
+  "description": ""
 }
