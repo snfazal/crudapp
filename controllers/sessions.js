@@ -3,10 +3,12 @@ var router = express.Router();
 var User = require('../models/user.js');
 var authHelpers = require('../helpers/auth.js')
 
+//user get to login page 
 router.get('/login', function(req, res) {
   res.render('login page');
 })
 
+//user login
 router.post('/login', authHelpers.loginUser, function(req, res){
   User.findOne({
     email: req.body.email,
@@ -18,6 +20,7 @@ router.post('/login', authHelpers.loginUser, function(req, res){
   });
 });
 
+//user logout
 router.delete('/', function(req, res){
   req.session.destroy(function(){
     res.send(req.session);
