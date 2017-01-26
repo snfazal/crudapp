@@ -4,13 +4,24 @@ var User = require('../models/user.js');
 var authHelpers = require('../helpers/auth.js')
 
 router.get('/login', function(req, res) {
-  res.render('users/login.hbs')
+  res.render('login page');
 })
 
 router.post('/login', authHelpers.loginUser, function(req, res){
+  User.findOne({
+    email: req.body.email,
+    password_digest: req.body.password
+  })
+  .exec(function(err, user){
+    if (err) {console.log(err);}
+    res.send(req.session);
+  });
 });
 
 router.delete('/', function(req, res){
-})
+  req.session.destroy(function(){
+    res.send(req.session);
+  });
+});
 
 module.exports = router;
