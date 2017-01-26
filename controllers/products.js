@@ -26,5 +26,30 @@ router.put('/:id/:pId', authHelpers.authorize, function(req, res){
 });
 
 
+//products create
+router.post('/new', function(req, res){
+  var product = new Product ({
+    product: req.body.product,
+    uses: req.body.uses,
+    routine: req.body.routine,
+    favorites: req.body.favorites,
+    details: req.body.details,
+    Rating: req.body.rating,
+    Bought: req.body.bought,
+    Refill: req.body.refill
+  });
+  User.findById(req. session.currentUser._id)
+    .exec(function(err, user){
+      if (err) {console.log(err);}
+      user.products.push(product);
+      user.save();
+      res.send(user);
+    });
+});
+
+
+
+
+
 
 module.exports = router;
