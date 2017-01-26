@@ -32,7 +32,7 @@ UserSchema.pre('save', function(next) {
 });
 
 var UserModel = mongoose.model('User', UserSchema);
-var ProductModel = mongoos.model('Product', ProductSchema);
+var ProductModel = mongoose.model('Product', ProductSchema);
 
 module.exports = {
   Product: ProductModel,

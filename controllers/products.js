@@ -1,7 +1,7 @@
 var express       = require('express');
 var router        = express.Router();
-var User          = require('..models/users.js');
-var Product       = require('..models/users.js');
+var User          = require('../models/user.js');
+// var Product       = require('..models/users.js');
 var authHelpers   = require('../helpers/auth.js');
 
 
@@ -21,6 +21,10 @@ router.put('/:id/:pId', authHelpers.authorize, function(req, res){
   .exec(function(err, product){
     if (err) {console.log(err);}
     product.save();
-    res.redirect{`/products/${req.params.id}/${req.params.pId}`};
+    res.redirect (`/products/${req.params.id}/${req.params.pId}`);
   });
 });
+
+
+
+module.exports = router;

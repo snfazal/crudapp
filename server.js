@@ -9,11 +9,12 @@ var mongoose = require('mongoose');
 //require the controllers so that they render onthe page
 var usersController = require('./controllers/users.js');
 var sessionsController = require('./controllers/sessions.js');
+var productsController = require('./controllers/products.js');
 
 var app = express();
 
 // ADD THE NAME OF YOUR DATABASE
-mongoose.connect('mongodb://localhost/skin_app');
+mongoose.connect('mongodb://localhost/skincare');
 
 app.set('view engine', 'hbs')
 
@@ -30,6 +31,7 @@ app.use(session({
 
 app.use('/users', usersController);
 app.use('/sessions', sessionsController);
+app.use('/products', productsController);
 
 // Now that we're connected, let's save that connection to the database in a variable.
 var db = mongoose.connection;
@@ -42,6 +44,10 @@ db.on('error', function(err){
 // Will log "database has been connected" if it successfully connects.
 db.once('open', function(){
   console.log('database connected!');
+});
+
+app.get('/', function(req, res){
+  res.render('home/home');
 });
 
 app.listen(4000, function(){
