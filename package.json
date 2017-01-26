@@ -21,6 +21,9 @@
     "type": "git",
     "url": "git+https://github.com/snfazal/crudapp.git"
   },
+  "engines": {
+    "node": "v6.9.1"
+  },
   "author": "sophie fazal",
   "license": "ISC",
   "bugs": {

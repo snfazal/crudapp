@@ -14,7 +14,8 @@ var productsController = require('./controllers/products.js');
 var app = express();
 
 // ADD THE NAME OF YOUR DATABASE
-mongoose.connect('mongodb://localhost/skincare');
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/skincare';
+mongoose.connect(mongoURI);
 
 app.set('view engine', 'hbs')
 
@@ -50,7 +51,7 @@ app.get('/', function(req, res){
   res.render('home/home');
 });
 
-app.listen(4000, function(){
+app.listen(process.env.PORT || 4000, function(){
   console.log('============');
   console.log('WERK, WERK');
   console.log('============');
