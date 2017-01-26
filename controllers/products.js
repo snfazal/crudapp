@@ -56,6 +56,15 @@ router.delete('/:id/:pId', authHelpers.authorize, function(req, res){
     });
 });
 
+//show products
+router.get('/:id:pId', authHelpers.authorize, function(req, res){
+  Products.findById(req.params.pId)
+    .exec(function(err, product){
+      if(err) {console.log(err);}
+      res.send(product);
+    });
+});
+
 
 
 
