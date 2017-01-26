@@ -14,3 +14,5 @@ router.get('/:id/edit/:pId', authHelpers.authorize, function(req, res){
     res.send(brew);
   });
 });
+
+//product delete
