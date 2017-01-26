@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var methodOverride = require('method-override');
 var logger = require('morgan');
-var hbs = require('hbs')
+var hbs = require('hbs');
 var mongoose = require('mongoose');
 
 //require the controllers so that they render onthe page
@@ -17,12 +17,13 @@ var app = express();
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/skincare';
 mongoose.connect(mongoURI);
 
-app.set('view engine', 'hbs')
+app.set('view engine', 'hbs');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.set(bodyParser.json());
+app.set(bodyParser.urlencoded({extended: true}));
 app.use(logger('dev'));
 app.use(methodOverride('_method'));
+
 
 app.use(session({
   secret: "derpderpderpcats",

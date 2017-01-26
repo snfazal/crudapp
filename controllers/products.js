@@ -38,7 +38,7 @@ router.post('/new', function(req, res){
     Bought: req.body.bought,
     Refill: req.body.refill
   });
-  User.findById(req. session.currentUser._id)
+  User.findById(req.session.currentUser._id)
     .exec(function(err, user){
       if (err) {console.log(err);}
       user.products.push(product);
@@ -49,7 +49,7 @@ router.post('/new', function(req, res){
 
 //products delete
 router.delete('/:id/:pId', authHelpers.authorize, function(req, res){
-  Brew.findByIdAndRemove(req.params.pId)
+  Products.findByIdAndRemove(req.params.pId)
     .exec(function(err){
       if (err) {console.log(err);}
       res.send('Product has been deleted');
@@ -66,7 +66,16 @@ router.get('/:id:pId', authHelpers.authorize, function(req, res){
 });
 
 
-
+//index for products
+//rmr to add authorize back into route
+router.get('/:id', function(req, res){
+  console.log('index route');
+  User.findById(req.params.id)
+    .exec(function(err, user){
+      if (err) {console.log(err);}
+      res.send(user.products);
+    });
+});
 
 
 
