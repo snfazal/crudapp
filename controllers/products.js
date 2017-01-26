@@ -47,6 +47,14 @@ router.post('/new', function(req, res){
     });
 });
 
+//products delete
+router.delete('/:id/:pId', authHelpers.authorize, function(req, res){
+  Brew.findByIdAndRemove(req.params.pId)
+    .exec(function(err){
+      if (err) {console.log(err);}
+      res.send('Product has been deleted');
+    });
+});
 
 
 
