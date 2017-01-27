@@ -3,10 +3,12 @@ var router = express.Router();
 var User = require('../models/user.js');
 var authHelpers = require('../helpers/auth.js')
 
+//signup route
 router.get('/signup', function(req, res){
   res.render('users/signup');
 });
 
+//create route --> redirects to login page after user signs up
 router.post('/', authHelpers.createSecure, function(req, res){
   var user = new User ({
     email: req.body.email,
@@ -19,6 +21,14 @@ router.post('/', authHelpers.createSecure, function(req, res){
   });
 });
 
+//edit route --> user can edit details
+route.get('/:pId/edit', function(req, res){
+  res.render('users/show.hbs');
+});
 
+//create route
+route.post('/', function(req, res){
+  res.send('****');
+});
 
 module.exports = router;
