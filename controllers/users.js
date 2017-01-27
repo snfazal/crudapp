@@ -28,6 +28,7 @@ router.get('/:id', function(req, res){
     .exec(function(err, user){
       if (err) {console.log(err);}
       console.log(user);
+      console.log(req.session.currentUser)
 
       res.render('users/show', { user });
     });
@@ -41,6 +42,7 @@ router.get('/users/edit', function(req, res){
 
 //create route --> redirects to login page after user signs up
 router.post('/', authHelpers.createSecure, function(req, res){
+  console.log('create route');
   var user = new User ({
     email: req.body.email,
     password_digest: res.hashedPassword

@@ -6,14 +6,20 @@ var authHelpers   = require('../helpers/auth.js');
 
 //index for products
 //rmr to add authorize back into route
-router.get('/products', authHelpers.authorize, function(req, res){
+router.get('/', function(req, res){
   console.log('index route');
   User.findById(req.params.id)
     .exec(function(err, user){
       if (err) {console.log(err);}
-      res.render, {products};
+      res.render, {};
     });
 });
+
+router.get('/new', function(req, res){
+  console.log('hit products/new route');
+  res.render('users/new.hbs');
+})
+
 
 //Product update SHOW route
 router.get('/:id/edit/:pId', authHelpers.authorize, function(req, res){
@@ -36,7 +42,7 @@ router.put('/:id/:pId', authHelpers.authorize, function(req, res){
 
 
 //products create
-router.post('/new', authHelpers.authorize, function(req, res){
+router.post('/products/new', authHelpers.authorize, function(req, res){
   var product = new Product ({
     product: req.body.product,
     uses: req.body.uses,
@@ -66,7 +72,7 @@ router.delete('/:id/:pId', authHelpers.authorize, function(req, res){
 });
 
 //show products
-router.get('/:id:pId', authHelpers.authorize, function(req, res){
+router.get('/:id', authHelpers.authorize, function(req, res){
   Products.findById(req.params.pId)
     .exec(function(err, product){
       if(err) {console.log(err);}

@@ -36,7 +36,7 @@ app.use(session({
 
 app.use('/users', usersController);
 app.use('/sessions', sessionsController);
-app.use('users/:id/products', productsController);
+app.use('/products', productsController);
 
 //Now that we're connected, let's save that connection to the database in a variable.
 var db = mongoose.connection;

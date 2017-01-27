@@ -3,9 +3,12 @@ var bcrypt = require('bcrypt');
 var User = require('../models/user.js');
 
 function createSecure(req, res, next) {
-
+  console.log('hit createSecure');
+  console.log(req.body);
   var password = req.body.password;
+  console.log('=====password below=========')
   console.log(password)
+  console.log('==============')
 
   res.hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
   next();
@@ -26,6 +29,8 @@ function loginUser(req, res, next) {
 
     } else if (bcrypt.compareSync(password, foundUser.password_digest)) {
       req.session.currentUser = foundUser;
+      console.log('found current user')
+      console.log(req.session.currentUser)
     }
     next()
   })
@@ -36,9 +41,14 @@ function loginUser(req, res, next) {
 }
 
 function authorize(req, res, next) {
-  var currentUser = req.session.currentUser;
+  console.log('authorize method')
+  console.log('====current user below====')
+  console.log(req.session.currentUser)
 
-  if (!currentUser || currentUser._id !== req.params.id ) {
+  var currentUser = req.session.currentUser;
+  console.log(currentUser);
+
+  if (!currentUser || currentUser._id !== req.params.id) {
     res.json({status: 401, data: 'unauthorized'});
   } else {
     next();
