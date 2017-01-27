@@ -1,0 +1,8 @@
+{{#each products}}
+<ul>
+  <li>Product Used: <a href="/products/{{../userId}}/{{_id}}"> {{bought}} {{favorites}}</li></a>
+  <li>Routine: {{routine}}</li>
+  <li>Rating: {{rating}}</li>
+</ul>
+{{/each}}
+<button type="button" name="button"><a href="/products/new/{{pId}}">New products</a></button>

@@ -11,20 +11,24 @@ router.get('/login', function(req, res) {
 
 //user login
 router.post('/login', authHelpers.loginUser, function(req, res){
-  User.findOne({
-    email: req.body.email,
-    password_digest: req.body.password
-  })
-  .exec(function(err, user){
-    if (err) {console.log(err);}
-    res.redirect('/products/' + req.session.currentUser._id);
-  });
+  console.log(req.session.currentUser)
+  res.redirect('/users/' + req.session.currentUser._id);
 });
+// router.post('/login', authHelpers.loginUser, function(req, res){
+//   User.findOne({
+//     email: req.body.email,
+//     password: req.body.password
+//   })
+//   .exec(function(err, user){
+//     if (err) {console.log(err);}
+//     res.redirect('/products/' + req.session.currentUser._id);
+//   });
+// });
 
 //user logout
 router.delete('/', function(req, res){
   req.session.destroy(function(){
-    res.redirect('/');
+    res.redirect('/users');
   });
 });
 
