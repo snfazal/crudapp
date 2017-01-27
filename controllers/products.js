@@ -1,7 +1,7 @@
 var express       = require('express');
 var router        = express.Router();
 var User          = require('../models/user.js');
-// var Product       = require('..models/users.js');
+var Product       = require('..models/product.js');
 var authHelpers   = require('../helpers/auth.js');
 
 
