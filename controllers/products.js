@@ -6,7 +6,7 @@ var authHelpers   = require('../helpers/auth.js');
 
 //index for products
 //rmr to add authorize back into route
-router.get('/products', function(req, res){
+router.get('/products', authHelpers.authorize, function(req, res){
   console.log('index route');
   User.findById(req.params.id)
     .exec(function(err, user){
@@ -36,7 +36,7 @@ router.put('/:id/:pId', authHelpers.authorize, function(req, res){
 
 
 //products create
-router.post('/new', function(req, res){
+router.post('/new', authHelpers.authorize, function(req, res){
   var product = new Product ({
     product: req.body.product,
     uses: req.body.uses,

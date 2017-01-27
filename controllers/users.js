@@ -5,6 +5,7 @@ var authHelpers = require('../helpers/auth.js')
 
 //user index route
 router.get('/', function(req, res){
+  console.log('/users/ route');
   User.find({})
     .exec(function(err, users){
       if (err) {console.log(err);}
@@ -12,21 +13,26 @@ router.get('/', function(req, res){
     });
 });
 
+//signup route
+router.get('/signup', function(req, res){
+  console.log('user/signup route')
+  res.render('users/signup');
+});
+
 //SHOW route for users (after login redirect)
-router.get('/:id', authHelpers.authorize, function(req, res){
+router.get('/:id', function(req, res){
+  console.log('/users/:id route');
+  console.log(req.params.id)
+
   User.findById(req.params.id)
     .exec(function(err, user){
       if (err) {console.log(err);}
       console.log(user);
-      
+
       res.render('users/show', { user });
     });
 });
 
-//signup route
-router.get('/signup', function(req, res){
-  res.render('users/signup');
-});
 
 //edit route --> user can edit details
 router.get('/users/edit', function(req, res){
@@ -56,3 +62,10 @@ router.post('/', function(req, res){
 });
 
 module.exports = router;
+
+
+// //signup route
+// router.get('/signup', function(req, res){
+//   console.log('user/signup route')
+//   res.render('users/signup');
+// });

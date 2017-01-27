@@ -1,0 +1,17 @@
+<h2>{{user.username}}'s Top Shelf</h1>
+
+<a href="/products/new">Add a new Product</a>
+
+<h3>All Products on your Shelf</h3>
+
+{{#each user.products}}
+<ul>
+  <li><a href="/products/{{_id}}?index={{@index}}">{{products}}</a></li>
+</ul>
+{{/each}}
+
+<br>
+
+<h3>Favorites</h3>
+
+<a href="/users">Return to Home Page</a>
