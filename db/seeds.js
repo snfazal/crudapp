@@ -1,7 +1,7 @@
 //this files fills up the database without using postman which is awesome!
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-mongoose.connect('mongod://localhost/skincare');
+mongoose.connect('mongodb://localhost/skincare');
 
 var User = require('../models/product');
 var Item = require('../models/user');
@@ -24,3 +24,12 @@ var emily = new User({
   password_digest: 'hello',
   products:[ProductsSchema]
 });
+
+//save
+emily.save(function(err){
+  if (err) console.log(err);
+  console.log('emily created as user');
+});
+
+
+module.exports = router;

@@ -1,3 +1,4 @@
+pry = require('pryjs');
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -19,23 +20,25 @@ mongoose.connect(mongoURI);
 
 app.set('view engine', 'hbs');
 
-app.set(bodyParser.json());
-app.set(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(logger('dev'));
 app.use(methodOverride('_method'));
+//below for public folder
+//app.use(express.static("public"));
 
 
 app.use(session({
-  secret: "derpderpderpcats",
+  secret: "heart",
   resave: false,
   saveUninitialized: false
 }));
 
 app.use('/users', usersController);
 app.use('/sessions', sessionsController);
-app.use('/products', productsController);
+app.use('users/:id/products', productsController);
 
-// Now that we're connected, let's save that connection to the database in a variable.
+//Now that we're connected, let's save that connection to the database in a variable.
 var db = mongoose.connection;
 
 // Will log an error if db can't connect to MongoDB
