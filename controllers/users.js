@@ -12,6 +12,17 @@ router.get('/', function(req, res){
     });
 });
 
+//SHOW route for users (after login redirect)
+router.get('/:id', authHelpers.authorize, function(req, res){
+  User.findById(req.params.id)
+    .exec(function(err, user){
+      if (err) {console.log(err);}
+      console.log(user);
+      
+      res.render('users/show', { user });
+    });
+});
+
 //signup route
 router.get('/signup', function(req, res){
   res.render('users/signup');

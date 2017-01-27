@@ -4,7 +4,16 @@ var User          = require('../models/user.js');
 var Product       = require('../models/product.js');
 var authHelpers   = require('../helpers/auth.js');
 
-
+//index for products
+//rmr to add authorize back into route
+router.get('/products', function(req, res){
+  console.log('index route');
+  User.findById(req.params.id)
+    .exec(function(err, user){
+      if (err) {console.log(err);}
+      res.render, {products};
+    });
+});
 
 //Product update SHOW route
 router.get('/:id/edit/:pId', authHelpers.authorize, function(req, res){
@@ -66,16 +75,7 @@ router.get('/:id:pId', authHelpers.authorize, function(req, res){
 });
 
 
-//index for products
-//rmr to add authorize back into route
-router.get('/:id', function(req, res){
-  console.log('index route');
-  User.findById(req.params.id)
-    .exec(function(err, user){
-      if (err) {console.log(err);}
-      res.send(user.products);
-    });
-});
+
 
 
 
