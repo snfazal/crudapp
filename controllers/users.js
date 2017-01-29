@@ -1,26 +1,31 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
+var product = require('../models/product.js')
 var authHelpers = require('../helpers/auth.js')
 
-//user index route
+//user index route -- shows all users on the same page
 router.get('/', function(req, res){
-  console.log('/users/ route');
+  console.log('/users/route');
   User.find({})
     .exec(function(err, users){
       if (err) {console.log(err);}
-      res.render('users/index', { users: users });
+      res.render('users/index', {
+        users: users,
+        currentUser: res.session.currentUser
+       });
     });
 });
 
-//signup route
+
+//SIGNUP ROUTE
 router.get('/signup', function(req, res){
   console.log('user/signup route')
   res.render('users/signup');
 });
 
-//SHOW route for users (after login redirect)
-router.get('/:id', function(req, res){
+//SHOW route -- showing the user's current information
+router.get('/:id', authHelpers.authorize, function(req, res){
   console.log('/users/:id route');
   console.log(req.params.id)
 
@@ -50,7 +55,8 @@ router.post('/', authHelpers.createSecure, function(req, res){
   console.log(user);
   user.save(function(err, user){
     if (err) { console.log(err); }
-    req.session.currentUser = user;
+    // req.session.currentUser = user;
+    console.log(user);
     console.log(req.session.currentUser)
     res.render('home/home', { user:user });
   });
