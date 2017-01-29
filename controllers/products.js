@@ -19,7 +19,7 @@ router.post('/new', function(req, res){
         Rating: req.body.rating,
         Bought: req.body.bought,
         Refill: req.body.refill
-      });
+      })
       user.save();
 
       res.redirect("/users/" + req.session.currentUser._id);
@@ -42,7 +42,9 @@ router.get('/:id/edit', function(req, res){
   });
 });
 
-router.put('/', function(req, res){
+//Update ROUTE saves changes when editing products
+router.put('/:id', function(req, res){
+  //on button click submit from edit.hbs will redirect to
   console.log("Hit PUT ROUTE")
   console.log("current User:", req.session.currentUser._id)
   User.findById(req.session.currentUser._id)
@@ -63,6 +65,20 @@ router.put('/', function(req, res){
   .then(function(user){
     res.redirect('/users/' + req.session.currentUser._id);
   })
+});
+
+
+//removing a product from the list
+router.delete('/:id', function(req, res){
+  User.findByIdAndUpdate(req.session.currentUser._id, {
+    $pull:{
+      products: {_id: req.params.id}
+    }
+  })
+  .exec(function(err, restaurant){
+    if (err) console.log(err);
+        res.redirect('/users/' + req.session.currentUser._id);
+  });
 });
 
 
