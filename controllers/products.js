@@ -17,7 +17,7 @@ router.get('/', function(req, res){
 
 router.get('/new', function(req, res){
   console.log('hit products/new route');
-  res.render('users/new.hbs');
+  res.render('users/new');
 })
 
 
