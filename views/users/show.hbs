@@ -1,12 +1,12 @@
 <h2>{{user.email}}'s Top Shelf</h1>
 
-<a href="/products/new">Add a new Product</a>
+<a href="/products/edit">Add a new Product</a>
 
 <h3>All Products on your Shelf</h3>
 
 {{#each user.products}}
 <ul>
-  <li><a href="/products/{{_id}}?index={{@index}}">{{products}}</a></li>
+  <li><a href="/products/{{_id}}?edit={{@edit}}">{{products}}</a></li>
 </ul>
 {{/each}}
 

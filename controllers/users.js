@@ -1,19 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
-var product = require('../models/product.js')
-var authHelpers = require('../helpers/auth.js')
+var Product = require('../models/product.js');
+var authHelpers = require('../helpers/auth.js');
 
 //user index route -- shows all users on the same page
 router.get('/', function(req, res){
-  console.log('/users/route');
+  console.log('users/route');
   User.find({})
     .exec(function(err, users){
       if (err) {console.log(err);}
       res.render('users/index', {
         users: users,
-        currentUser: res.session.currentUser
-       });
+        currentUser: req.session.currentUser
+       })
     });
 });
 

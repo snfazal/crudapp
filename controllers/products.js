@@ -34,8 +34,8 @@ router.get('/:id/edit', function(req, res){
     console.log("got new user", user)
 
   var product = user.products.id(req.params.id);
-  console.log("Found a new product--", product)
-  res.render('products/edit',{
+  console.log("Found a new product:", product)
+  res.render('products/edit', {
     user: user,
     product: products
     });
@@ -44,7 +44,7 @@ router.get('/:id/edit', function(req, res){
 
 //Update ROUTE saves changes when editing products
 router.put('/:id', function(req, res){
-  //on button click submit from edit.hbs will redirect to
+  //on click submit from edit.hbs will redirect to
   console.log("Hit PUT ROUTE")
   console.log("current User:", req.session.currentUser._id)
   User.findById(req.session.currentUser._id)

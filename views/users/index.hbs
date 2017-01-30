@@ -1,9 +1,7 @@
-{{#each products}}
-<ul>
-  <li>Product Used: <a href="/products/{{../pId}}/{{_id}}"> {{bought}} {{favorites}}</li></a>
-  <li>Routine: {{routine}}</li>
-  <li>Rating: {{rating}}</li>
-</ul>
-{{/each}}
 
-<button type="button" name="button"><a href="/products/new/{{pId}}">New products</a></button>
+<h1 class="h1index">Top Shelf Users</h1>
+
+{{#each users}}
+  <li>{{email}}</li>
+  <li>{{products.name}}
+{{/each}}
