@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 var ProductSchema = new Schema({
-  productt: String,
+  name: String,
+  product: String,
   uses: String,
   routine: String,
   favorites: Boolean,
@@ -26,7 +27,7 @@ var UserSchema = new Schema({
 UserSchema.pre('save', function(next) {
   now = new Date();
   this.updated_at = now;
-  
+
   if (!this.created_at) { this.created_at = now }
   next()
 });

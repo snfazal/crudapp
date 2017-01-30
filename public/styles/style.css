@@ -1,3 +1,59 @@
+/*general layout*/
 p {
   color: navy;
+}
+#homepage {
+  color: black;
+  text-align: center;
+}
+ul#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+ul#navbar li a {
+  display: inline-block;
+  color: #D9D9D9;
+  text-align: center;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+ul#navbar li a:hover {
+  background-color: #B80000;
+}
+
+ul#nabar li.icon {
+  display: none;
+}
+
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {
+    display: none;
+  }
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  ul.topnav.responsive {
+    position: relative;
+  }
+  ul.topnav.responsive li.icon {
+    float: left;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: left;
+    display: block;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: right;
+  }
 }
