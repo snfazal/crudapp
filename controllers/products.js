@@ -5,7 +5,7 @@ var Product       = require('../models/product.js');
 var authHelpers   = require('../helpers/auth.js');
 
 //CREATE route -- adding a new product to store
-router.post('/new', function(req, res){
+router.post('/', function(req, res){
   User.findById(req.session.currentUser._id)
     .exec(function(err, user){
       if (err) {console.log(err)}
