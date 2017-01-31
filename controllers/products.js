@@ -58,7 +58,7 @@ router.post('/', function(req, res){
 });
 
 //EDIT ROUTE --SHOWS edit page
-router.get('/edit', function(req, res){
+router.get('/:id', function(req, res){
   console.log("Testing REQ.Params:", req.params)
   User.findById(req.session.currentUser._id)
   .exec(function(err, user){
@@ -66,7 +66,7 @@ router.get('/edit', function(req, res){
 
   var product = user.products.id(req.params.id);
   console.log("Found a new product:", product)
-  res.render('products/edit', {
+  res.render('/products/edit', {
     user: user,
     product: products
     });
