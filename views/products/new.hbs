@@ -1,30 +1,37 @@
 <section class="content">
-  <form class="" action="/products" method="post">
+  <form class="" action="/products/{{id}}" method="post">
     <h3>Newest Product</h3>
     Products info <br>
     <ul>
       <li>
-        Product: <input type="text" name="name" value="product">
+        Product: <input type="text" name="name" placeholder="product">
       </li>
+
       <li>
-        Uses: <input type="text" name="uses" value="daily/weekly">
+        Uses: <input type="text" name="uses" placeholder="daily/weekly">
       </li>
+
       <li>
-        Routine <input type="text" name="routine" value="morning/nighttime">
+        Routine <input type="text" name="routine" placeholder="morning/nighttime">
       </li>
+
       <li>
-        Favorites: <input type="text" name="favorites" value="yes/no">
+        Favorites: <input type="text" name="favorites" placeholder="yes/no">
       </li>
+
       <li>
-        Refill: <input type="text" name="details" value="every 3 months">
+        Refill: <input type="text" name="details" placeholder="every 3 months">
       </li>
+
       <li>
-        Rating: <input type="text" name="rating" value="5">
+        Rating: <input type="text" name="rating" placeholder="5">
       </li>
+
       <li>
         Details:
-        <textarea name="description" rows="8" cols="80"> What do you love about this product? Do you have usage preferences? Would you buy this again? Why? </textarea>
+        <textarea name="description" rows="8" cols="80" placeholder="What do you love about this product? Do you have usage preferences? Would you buy this again? Why?"></textarea>
       </li>
+
     </ul>
     <input type="submit" name="" value="Submit new Product">
 

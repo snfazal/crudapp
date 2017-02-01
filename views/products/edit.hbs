@@ -1,14 +1,47 @@
-<form action="/users/{{user.id}}/products/{{product.id}}?_method=PUT" method="POST">
-  <input type="text" name="name" value="name"><br>
-  <input type="text" name="productt" value="phone number"><br>
-  <input type="text" name="uses" value="uses"><br>
-  <input type="text" name="routine" value="routine"><br>
-  <input type="text" name="favorites" value="details"><br>
-  <input type="text" name="rating" value="rating"><br>
-  <input type="text" name="details" value="rating"><br>
+<h2>{{products.name}}</h1>
 
-  <form class="" action="/products/{{_id}}?_method=delete" method="post">
-    <input type="submit" name="" value="edit">
-  </form>
+<!-- <form class="" action="/products/{{_id}}" method="PUT"> -->
 
-</form>
+  <section class="content">
+    <form class="" action="/products/{{products._id}}?_method=PUT" method="POST">
+      <h3>Update your product</h3>
+      Products info <br>
+      <ul>
+        <li>
+          Product: <input type="text" name="name" value="{{products.name}}">
+        </li>
+
+        <li>
+          Uses: <input type="text" name="uses" value="{{products.uses}}">
+        </li>
+
+        <li>
+          Routine <input type="text" name="routine" value="{{products.routine}}">
+        </li>
+
+        <li>
+          Favorites: <input type="text" name="favorites" value="{{products.favorites}}">
+        </li>
+
+        <li>
+          Refill: <input type="text" name="details" value="{{products.details}}">
+        </li>
+
+        <li>
+          Rating: <input type="text" name="rating" value="{{products.rating}}">
+        </li>
+
+        <li>
+          Details:
+          <textarea name="description" rows="8" cols="50">{{products.description}}</textarea>
+        </li>
+
+      </ul>
+      <input type="submit" name="" value="edit changes">
+
+
+    </form>
+  </section>
+
+
+<a href="/users/{{user._id}}">return to your top shelf</a>

@@ -5,30 +5,7 @@ var User          = require('../models/user.js');
 var Product       = require('../models/product.js');
 var authHelpers   = require('../helpers/auth.js');
 
-//Update ROUTE saves changes when editing products
-router.put('/:id', function(req, res){
-  //on click submit from edit.hbs will redirect to
-  console.log("Hit PUT ROUTE")
-  console.log("current User:", req.session.currentUser._id)
-  User.findById(req.session.currentUser._id)
-  .exec(function(err, user){
-    var product = user.products.id(req.params.id);
-    product.name = req.body.name;
-    product.product = req.body.product;
-    product.uses = req.body.uses;
-    product.routine = req.body.routine;
-    product.favorites = req.body.favorites;
-    product.details = req.body.details;
-    product.rating = req.body.rating;
-    product.bought = req.body.bought;
-    product.refill = req.body.refill
 
-    user.save();
-  })
-  .then(function(user){
-    res.redirect('/users/' + req.session.currentUser._id);
-  })
-});
 
 //NEW Route
 router.get('/new', function(req, res){
@@ -57,22 +34,46 @@ router.post('/', function(req, res){
     });
 });
 
-//EDIT ROUTE --SHOWS edit page
-router.get('/:id', function(req, res){
-  console.log("Testing REQ.Params:", req.params)
+// EDIT ROUTE --SHOWS edit page
+router.get('/:id/edit', function(req, res){
+  console.log("Testing req.params:", req.params)
   User.findById(req.session.currentUser._id)
   .exec(function(err, user){
     console.log("got new user", user)
 
   var product = user.products.id(req.params.id);
   console.log("Found a new product:", product)
-  res.render('/products/edit', {
+  res.render('products/edit', {
     user: user,
-    product: products
+    products: product
     });
   });
 });
 
+//Update ROUTE saves changes when editing products
+router.put('/:id', function(req, res){
+  //on click submit from edit.hbs will redirect to
+  console.log("current User:", req.session.currentUser._id)
+  User.findById(req.session.currentUser._id)
+  .exec(function(err, user){
+    if (err) {console.log(err);}
+
+    var product = user.products.id(req.params.id);
+      product.name= req.body.name;
+      product.product= req.body.product;
+      product.uses= req.body.uses;
+      product.routine= req.body.routine;
+      product.favorites= req.body.favorites;
+      product.details= req.body.details;
+      product.rating= req.body.rating;
+
+    user.save();
+
+  })
+  .then(function(user){
+    res.redirect('/users/' + req.session.currentUser._id);
+  })
+});
 
 
 
